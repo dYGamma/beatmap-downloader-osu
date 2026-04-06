@@ -1,0 +1,199 @@
+:root {
+  --bg: #FAF6E9;
+  --text: #1A1A2E;
+  --text-muted: #6B6B8A;
+  --accent: #FF6B6B;
+  --accent-pink: #FF99BB;
+  --navy: #1A1A2E;
+  --subtle: rgba(26, 26, 46, 0.06);
+  --divider: rgba(26, 26, 46, 0.12);
+  --btn-primary-bg: #1A1A2E;
+  --btn-primary-text: #FAF6E9;
+  --btn-accent-bg: #FF6B6B;
+  --btn-accent-text: #FAF6E9;
+  --progress-from: #FF6B6B;
+  --progress-to: #FF99BB;
+  --font: 'Segoe UI', system-ui, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  user-select: none;
+  overflow: hidden;
+  width: 800px;
+  height: 600px;
+}
+
+.screen {
+  width: 100%;
+  height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.screen-centered {
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  background: var(--bg);
+  border: 2px solid var(--navy);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s ease;
+}
+
+input:focus {
+  border-color: var(--accent);
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--divider);
+  margin: 24px 0;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border: 2px solid var(--navy);
+  border-radius: 8px;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease, opacity 0.12s ease;
+  white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(0.88);
+  transform: scale(1.02);
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+  filter: brightness(0.82);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+
+.btn-accent {
+  background: var(--btn-accent-bg);
+  color: var(--btn-accent-text);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+}
+
+/* ── Progress bar ── */
+.progress-track {
+  height: 10px;
+  background: rgba(26, 26, 46, 0.08);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--progress-from), var(--progress-to));
+  border-radius: 5px;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.35) 50%, transparent 100%);
+  animation: shimmer 1.8s infinite;
+}
+
+/* ── Keyframes ── */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes bounce-in {
+  0%   { transform: scale(0.7); opacity: 0; }
+  60%  { transform: scale(1.08); }
+  80%  { transform: scale(0.96); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+
+@keyframes draw-check {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Screen transition ── */
+.screen-enter {
+  animation: fade-slide-up 0.25s ease both;
+}
+
+/* ── Animated elements ── */
+.logo-bounce {
+  animation: bounce-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.fade-slide-up {
+  animation: fade-slide-up 0.2s ease both;
+}
+
+.pulse-icon {
+  display: inline-block;
+  animation: pulse-opacity 1s ease-in-out infinite;
+}
+
+.checkmark-path {
+  stroke-dasharray: 28;
+  stroke-dashoffset: 28;
+  animation: draw-check 0.5s ease-out 0.15s forwards;
+}
