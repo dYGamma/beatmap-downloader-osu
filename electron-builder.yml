@@ -1,0 +1,20 @@
+appId: com.osudw.beatmap-downloader
+productName: osu! Beatmap Downloader
+directories:
+  buildResources: assets
+  output: dist
+files:
+  - out/**/*
+  - package.json
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  icon: assets/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
